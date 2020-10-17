@@ -1,0 +1,28 @@
+<h3>Products</h3>
+<div><button (click)="onShow()">Add product</button></div>
+<div *ngIf = "showForm">
+    <div>Enter product code:<input type='text' [(ngModel)]="productCode"/> </div> 
+    <div>Enter product name:<input type='text' [(ngModel)]="productName"/> </div> 
+    <div>Enter product price:<input type='number' [(ngModel)]="productPrice"/> </div> 
+    <div>Enter product description:<input type='text' [(ngModel)]="description"/> </div> 
+    <div>Enter product hsnCode:<input type='text' [(ngModel)]="hsnCode"/></div>
+    <div style="display:flex">
+        <button (click)="onAdd()">Add</button>
+        <button (click)="onReset()">Reset</button>
+    </div>
+</div>
+<div class="card-container">
+<div *ngFor = "let p of products , let index = i"  >
+   <div class="card"> 
+    <img class="product-image" (click) = "onViewProduct(p.productCode,p.productName, p.productPrice, p.description, p.hsnCode)" src="assets/product.png">
+    <div>{{p.productCode}} </div>
+    <div>{{p.productName}}</div>
+    
+
+   </div> 
+    <button (click)="onDelete(i)"> Delete product</button>
+</div>
+</div>
+
+
+<div *ngIf = "products.length==0">No product found</div>
